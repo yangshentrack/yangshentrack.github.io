@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>webpack | 小羊的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概念webpack 是一个用于现代 JavaScript 应用程序的 静态模块打包工具。当 webpack 处理应用程序时，它会在内部从一个或多个入口点构建一个 依赖图(dependency graph)，然后将你项目中所需的每一个模块组合成一个或多个 bundles，它们均为静态资源，用于展示你的内容。 使用 第一步  有以下命令可用 12345678910npm install webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack">
+<meta property="og:url" content="http://example.com/2022/02/24/webpack/index.html">
+<meta property="og:site_name" content="小羊的博客">
+<meta property="og:description" content="概念webpack 是一个用于现代 JavaScript 应用程序的 静态模块打包工具。当 webpack 处理应用程序时，它会在内部从一个或多个入口点构建一个 依赖图(dependency graph)，然后将你项目中所需的每一个模块组合成一个或多个 bundles，它们均为静态资源，用于展示你的内容。 使用 第一步  有以下命令可用 12345678910npm install webpack">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-24T06:02:30.000Z">
+<meta property="article:modified_time" content="2022-02-24T07:36:06.230Z">
+<meta property="article:author" content="track">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="小羊的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">track</a></h1>
+		</hgroup>
+
+		
+			<p class="header-subtitle"></p>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">首页</a></li>
+				        
+							<li><a href="/archives">文章目录</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+					        
+						</div>
+						<!-- music -->
+						
+							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
+							<div style="position: absolute; left: auto; width: 85%;">
+								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=https://music.163.com/song?id=1904183420&userid=1775983247&auto=1&height=66"></iframe>
+							</div>
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/leetCode/" style="font-size: 10px;">leetCode</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">前端基础</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 10px;">前端开发</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/" style="font-size: 10px;">静态页面</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 15px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io/zh-cn/">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://gitee.com/luonanyangtrack">Gitee</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/yangshentrack">github</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://es6.ruanyifeng.com/">ES6教程</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://lai-mincheng.gitee.io/my-blog/">赖师傅的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Hello, I&#39;m a developer. Nice to meet you! ———My QQ (2423051184)  WeChatID (lny0have0gyq)</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">首页</a></li>
+		        
+					<li><a href="/archives">文章目录</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-webpack" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/02/24/webpack/" class="article-date">
+  	<time datetime="2022-02-24T06:02:30.000Z" itemprop="datePublished">2022-02-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webpack
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>webpack 是一个用于现代 JavaScript 应用程序的 静态模块打包工具。当 webpack 处理应用程序时，<br>它会在内部从一个或多个入口点构建一个 依赖图(dependency graph)，然后将你项目中所需的每一个模<br>块组合成一个或多个 bundles，它们均为静态资源，用于展示你的内容。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><ul>
+<li><p>第一步<br>  有以下命令可用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack-cli -D  // -D因为不需要被打包项目中</span><br><span class="line">// 打包特定的文件有以下可用</span><br><span class="line">npm install html-webpack-plugin -D// 打包 html 文件</span><br><span class="line">npm install vue-loader@next -D// 打包 vue 文件</span><br><span class="line">npm install style-loader -D// 将 css 添加到页面中</span><br><span class="line">npm install css-loader -D// 打包 css 文件</span><br><span class="line">npm install clean-webpack-plugin //  防止每次生成的dist文件缓存导致更新失败</span><br><span class="line">npm install @babel/core  -D  // babel 核心源码</span><br><span class="line">npm install @babel/preset-env -D  // 读懂 es6 以及以上语法</span><br><span class="line">npm install @babel-loader -D // 转换成浏览器能看懂的代码</span><br></pre></td></tr></table></figure>
+<span id="more"></span></li>
+<li><p>第二步<br>  根目录下创建一个 webpack.config.js 并配置<br>  有需要 创建一个 babel.config.js 配置 babel</p>
+</li>
+<li><p>第三步<br>  使用命令进行打包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack --config webpack.config.js</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="如何配置"><a href="#如何配置" class="headerlink" title="如何配置"></a>如何配置</h1><ol>
+<li>在 webpack.config.js 文件中 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;) // 引入path</span><br><span class="line">const &#123; VueLoaderPlugin &#125; = require(&#x27;vue-loader/dist/index&#x27;) // 引入这个插件让webpack能编译vue语法</span><br><span class="line">const &#123; CleanWebpackPlugin &#125; = require(&#x27;clean-webpack-plugin&#x27;) </span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    mode: &#x27;&#x27;, // production默认值(生产模式) 或 development(开发模式)</span><br><span class="line"></span><br><span class="line">    entry: path.resolve(__dirname, &#x27;./src/main.js&#x27;),   //打包的入口使用的是绝对路径</span><br><span class="line"></span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, &#x27;dist&#x27;),  // 打包的出口</span><br><span class="line">        filename: &#x27;js/[name].js&#x27;, // 文件的名字可自取</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    plugins: [</span><br><span class="line">        new HtmlWebpackPlugin(&#123;</span><br><span class="line">            template: path.resolve(__dirname, &#x27;./index.html&#x27;), // 相当于找入口文件</span><br><span class="line">            filename:&#x27;index.html&#x27;,</span><br><span class="line">            title: &#x27;获取html文件&#x27; //在html文件中的 title 标签中的内容改为&lt;%= htmlWebpackPlugin.options.title %&gt;</span><br><span class="line">        &#125;),</span><br><span class="line"></span><br><span class="line">        new VueLoaderPlugin(), // 让webpack能编译vue语法</span><br><span class="line">        new CleanWebpackPlugin()</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123; test: /\.vue$/, use: [&#x27;vue-loader&#x27;]&#125;, //让webpack能识别.vue文件</span><br><span class="line">            &#123; test: /\.css$/, use: [&#x27;style-loader&#x27;, &#x27;css-loader&#x27;]&#125;, // 从右往左加载，css-loader打包css，style-loader把打包后的css添加到html</span><br><span class="line">            &#123; test: /\.js$/, exclude:/node_modules/, loader: &#x27;babel-loader&#x27; &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    devServer: &#123; //将dist文件云运行服务</span><br><span class="line">        contentBase: path.resolve(__dirname,&#x27;./dist&#x27;),</span><br><span class="line">        prot: 8080,</span><br><span class="line">        publicPath: &#x27;/&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在babel.config.js 文件中<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    presets: [</span><br><span class="line">        [&quot;@babel/preset-env&quot;, &#123;</span><br><span class="line">            &quot;targets&quot;: &#123;</span><br><span class="line">                &quot;browsers&quot;: [&quot;last 2 version&quot;] //最近两个版本的浏览器能识别</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>以上就是webpack比较基础的配置项，详细可以参考<a target="_blank" rel="noopener" href="https://webpack.docschina.org/concepts/">webpack 官方文档</a>以及 <a target="_blank" rel="noopener" href="https://www.babeljs.cn/"> babel 官方文档</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/24/Http/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          HTTP
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/02/23/router/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端路由</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2022 track
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

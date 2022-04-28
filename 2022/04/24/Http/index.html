@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTTP | 小羊的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="http组成 请求行 首部(header请求,响应头) 实体GTE   &#x2F;images&#x2F;logo.png   HTTP&#x2F;1.1  首部 通用首部Cache-control 控制缓存的行为Date          创建报文的时间Pragma        报文指令Via           代理服务器的相关信息Transfer-     传输编码方式Connection    浏览器想要有限使用的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP">
+<meta property="og:url" content="http://example.com/2022/04/24/Http/index.html">
+<meta property="og:site_name" content="小羊的博客">
+<meta property="og:description" content="http组成 请求行 首部(header请求,响应头) 实体GTE   &#x2F;images&#x2F;logo.png   HTTP&#x2F;1.1  首部 通用首部Cache-control 控制缓存的行为Date          创建报文的时间Pragma        报文指令Via           代理服务器的相关信息Transfer-     传输编码方式Connection    浏览器想要有限使用的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-24T05:32:30.000Z">
+<meta property="article:modified_time" content="2022-04-27T09:10:13.410Z">
+<meta property="article:author" content="track">
+<meta property="article:tag" content="http">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="小羊的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">track</a></h1>
+		</hgroup>
+
+		
+			<p class="header-subtitle"></p>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">首页</a></li>
+				        
+							<li><a href="/archives">文章目录</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+					        
+						</div>
+						<!-- music -->
+						
+							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
+							<div style="position: absolute; left: auto; width: 85%;">
+								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=https://music.163.com/song?id=1904183420&userid=1775983247&auto=1&height=66"></iframe>
+							</div>
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/leetCode/" style="font-size: 10px;">leetCode</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">前端基础</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 10px;">前端开发</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/" style="font-size: 10px;">静态页面</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 15px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io/zh-cn/">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://gitee.com/luonanyangtrack">Gitee</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/yangshentrack">github</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://es6.ruanyifeng.com/">ES6教程</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://lai-mincheng.gitee.io/my-blog/">赖师傅的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Hello, I&#39;m a developer. Nice to meet you! ———My QQ (2423051184)  WeChatID (lny0have0gyq)</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">首页</a></li>
+		        
+					<li><a href="/archives">文章目录</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Http" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/04/24/Http/" class="article-date">
+  	<time datetime="2022-04-24T05:32:30.000Z" itemprop="datePublished">2022-04-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTTP
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/" rel="tag">http</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="http组成"><a href="#http组成" class="headerlink" title="http组成"></a>http组成</h1><ol>
+<li>请求行</li>
+<li>首部(header请求,响应头)</li>
+<li>实体<br>GTE   /images/logo.png   HTTP/1.1</li>
+</ol>
+<h1 id="首部"><a href="#首部" class="headerlink" title="首部"></a>首部</h1><ul>
+<li>通用首部<br>Cache-control 控制缓存的行为<br>Date          创建报文的时间<br>Pragma        报文指令<br>Via           代理服务器的相关信息<br>Transfer-     传输编码方式<br>Connection    浏览器想要有限使用的连接类型</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li><p>请求的首部<br>Access           能正确接收的媒体类型<br>Access-Charset   能正确接收的字符集<br>Access-Encoding  能正确接收的编码格式<br>Host             服务端的域名<br>Accept-Language  能正确接收的的语言<br>User-Agent       客户端的信息</p>
+</li>
+<li><p>响应的首部<br>Accept-Ranges    是否支持某些种类<br>Age              资源在代理缓存中的存在时间<br>Etag             资源标识<br>Location         客户端需要重定向到某个url</p>
+</li>
+</ul>
+<h1 id="实体"><a href="#实体" class="headerlink" title="实体"></a>实体</h1><ul>
+<li>实体首部<br>Allow            资源的正确请求方式<br>Expires          内容的过期时间<br>Content-Type     内容的媒体类型<br>Last_modified    内容最后的修改时间</li>
+</ul>
+<h1 id="常见的状态码"><a href="#常见的状态码" class="headerlink" title="常见的状态码"></a>常见的状态码</h1><ul>
+<li>2xx<br>200<br>204   请求成功，但是响应的报文不包含实体的主体部分<br>205   请求成功，但是响应的报文不包含实体的主体部分，但是要求请求方重置内容<br>206   范围请求</li>
+<li>3xx   重定向<br>301   资源永久重定向<br>302   临时重定向<br>303   资源存在另一个url<br>304   服务器允许访问资源，发起请求条件未满足<br>307   临时，保持请求方法不变向新的地址发出请求</li>
+<li>4xx   客户端错误<br>400   请求报文语法错误<br>401   发送的请求没有http认证信息<br>403   直接被拒绝（跨域）<br>404   在服务器没找到资源</li>
+<li>5xx   服务器错误(找后端)<br>500   服务器发送错误<br>501   后端不支持<br>503   服务器崩溃超负荷运作</li>
+</ul>
+<h1 id="TLS协议"><a href="#TLS协议" class="headerlink" title="TLS协议"></a>TLS协议</h1><p>TSL协议是在传输层之上，应用层之下的协议<br>HTTPS还是通过HTTP协议来传输信息，但是信息通过TSL协议进行加密</p>
+<p>TSL协议的两种加密方式：</p>
+<ol>
+<li>对称加密</li>
+<li>非对称加密</li>
+</ol>
+<ul>
+<li><p>对称加密：客户端和服务端两边拥有相同的密钥，两边都知道如何将密文进行加密和解密，<br>这种方式很方便问题在于如何让双方都知道这个密钥，因为传输数据用的是网络，如果将密钥<br>通过网络的方式进行传递的话，一旦密钥被截获那么加密就没有效果。</p>
+</li>
+<li><p>非对称加密：有公钥和私钥之分，公钥可以让所有人知道，用于数据加密，但是要解密数据必须使用私钥，私钥只有分发公钥的一方才知道</p>
+</li>
+</ul>
+<ul>
+<li>流程：假如A是服务端，B是客户端</li>
+</ul>
+<ol>
+<li>A创建公钥和私钥，将公钥公布出去让B知道</li>
+<li>B创建一个密钥，然后通过公钥加密这个密钥，并发送A</li>
+<li>A通过私钥解密这个密钥</li>
+<li>两端就都知道密钥了</li>
+</ol>
+<h1 id="HTTP3"><a href="#HTTP3" class="headerlink" title="HTTP3"></a>HTTP3</h1><p>HTTP1中存在一些性能问题，因为浏览器限制了同一个域名下的请求数量(chrome一般是6个)，如果一个页面需要大量的请求，那么就会造成请求阻塞，需要前6个请求完才能请求下一波的6个</p>
+<p>HTTP2解决了这些性能问题，引入了多路复用技术(一个TCP连接里面可以传输多条数据流)，采用二进制编码，大幅度提升网页性能，又因为使用了多路复用，当某个TCP连接出现丢包的情况，就会导致HTTP2的情况变复杂，反倒不如HTTP1了</p>
+<p>HTTP3基于UDP协议的QUIC协议，解决的TCP的问题</p>
+<h1 id="post-和-get-的区别"><a href="#post-和-get-的区别" class="headerlink" title="post 和 get 的区别"></a>post 和 get 的区别</h1><p>副作用：服务器上的资源发送改变<br>幂等：服务器上的资源状态是否一致</p>
+<ol>
+<li>get度用于无副作用，幂等的场景，比如搜索关键字。post多用于副作用，不幂等的场景，比如注册</li>
+<li>get 请求能缓存，post不能</li>
+<li>post相对于get稍微安全一点，因为get请求的参数都包含在url里面（body也能）,并且会被浏览器保存历史记录，post不会</li>
+<li>因为浏览器对url有长度限制，所以会影响get请求</li>
+<li>post支持更多的编码类型且不对数据类型做限制</li>
+</ol>
+<h1 id="从输入URL到页面渲染发生了什么"><a href="#从输入URL到页面渲染发生了什么" class="headerlink" title="从输入URL到页面渲染发生了什么"></a>从输入URL到页面渲染发生了什么</h1><ol>
+<li>客户端发起DNS解析，得到服务端的IP地址</li>
+<li>TCP的三次握手，建立连接</li>
+<li>数据传输</li>
+<li>浏览器获取到html，css，js这种资源</li>
+<li>浏览器会将HTML解析成DOM树，css解析成cssOM树，在合成render树</li>
+<li>拿着render树去调用浏览器的GUI绘图功能，绘制出页面（回流重绘）</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/26/interview4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          flex,float和BFC
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/02/24/webpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">webpack</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2022 track
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

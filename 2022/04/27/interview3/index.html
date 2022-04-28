@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vuex | 小羊的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是VuexVuex 是一个专为 Vue.js 应用程序开发的状态管理模式 + 库。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。 如何引入Vuex1234567891011import Vue from &amp;#x27;vue&amp;#x27;import Vuex from &amp;#x27;vuex&amp;#x27;Vue.use(Vuex)export defau">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuex">
+<meta property="og:url" content="http://example.com/2022/04/27/interview3/index.html">
+<meta property="og:site_name" content="小羊的博客">
+<meta property="og:description" content="什么是VuexVuex 是一个专为 Vue.js 应用程序开发的状态管理模式 + 库。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。 如何引入Vuex1234567891011import Vue from &amp;#x27;vue&amp;#x27;import Vuex from &amp;#x27;vuex&amp;#x27;Vue.use(Vuex)export defau">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-26T17:51:30.000Z">
+<meta property="article:modified_time" content="2022-04-27T09:08:30.140Z">
+<meta property="article:author" content="track">
+<meta property="article:tag" content="面试题">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="小羊的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">track</a></h1>
+		</hgroup>
+
+		
+			<p class="header-subtitle"></p>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">首页</a></li>
+				        
+							<li><a href="/archives">文章目录</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+					        
+						</div>
+						<!-- music -->
+						
+							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
+							<div style="position: absolute; left: auto; width: 85%;">
+								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=https://music.163.com/song?id=1904183420&userid=1775983247&auto=1&height=66"></iframe>
+							</div>
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/leetCode/" style="font-size: 10px;">leetCode</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">前端基础</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 10px;">前端开发</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/" style="font-size: 10px;">静态页面</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 15px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io/zh-cn/">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://gitee.com/luonanyangtrack">Gitee</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/yangshentrack">github</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://es6.ruanyifeng.com/">ES6教程</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://lai-mincheng.gitee.io/my-blog/">赖师傅的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Hello, I&#39;m a developer. Nice to meet you! ———My QQ (2423051184)  WeChatID (lny0have0gyq)</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">首页</a></li>
+		        
+					<li><a href="/archives">文章目录</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-interview3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/04/27/interview3/" class="article-date">
+  	<time datetime="2022-04-26T17:51:30.000Z" itemprop="datePublished">2022-04-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vuex
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是Vuex"><a href="#什么是Vuex" class="headerlink" title="什么是Vuex"></a>什么是Vuex</h1><p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式 + 库。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
+<h1 id="如何引入Vuex"><a href="#如何引入Vuex" class="headerlink" title="如何引入Vuex"></a>如何引入Vuex</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#x27;vue&#x27;</span><br><span class="line">import Vuex from &#x27;vuex&#x27;</span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">export default new Vuex.store(&#123;</span><br><span class="line">    state:&#123;&#125;,</span><br><span class="line">    getters: &#123;&#125;,</span><br><span class="line">    mutations: &#123;&#125;,</span><br><span class="line">    actions: &#123;&#125;,</span><br><span class="line">    modules: &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h1 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h1><ol>
+<li><p>state: Vuex的基本数据，用来存储变量</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">state: &#123;</span><br><span class="line">    user:&#x27;&#x27;,</span><br><span class="line">    ID:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 使用Vuex的mapState辅助函数，可以通过computed获得</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapState &#125; from &#x27;vuex&#x27;</span><br><span class="line">computed: &#123;</span><br><span class="line">    ...mapState([&#x27;user&#x27;,&#x27;ID&#x27;])  //如此我们要使用state的时候就直接用this.user</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>getters：可以认为是 store 的计算属性</p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getters: &#123;</span><br><span class="line">    getUserId(state) &#123;</span><br><span class="line">        console.log(state.ID)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p> 使用Vuex的 mapGetters 辅助函数，可以通过computed获得</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapGetters &#125; from &#x27;vuex&#x27;</span><br><span class="line">computed: &#123;</span><br><span class="line">    ...mapGetters([&#x27;getUserId&#x27;])  //如此我们要使用state的时候就直接用this.getUserId</span><br><span class="line">    ...mapGetters(&#123; // 另外取一个名字</span><br><span class="line">        getID:&#x27;getUserId&#x27; </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p> 从 Vue 3.0 开始，getter 的结果不再像计算属性一样会被缓存起来。这是一个已知的问题，将会在 3.2 版本中修复。</p>
+</li>
+<li><p>mutations：更改 Vuex 的 store 中的状态的唯一方法是提交 mutation</p>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span><br><span class="line">    AddId(state,n) &#123;</span><br><span class="line">        state.ID += n</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ReduceId(state,payload) &#123;</span><br><span class="line">        state.ID -= payload.amount</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> store内找到AddId并改变state里变量的状态,以下有两种提交风格</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">commit(&#x27;AddId&#x27;,n) </span><br><span class="line"></span><br><span class="line">commit(&#123;</span><br><span class="line">    type:&#x27;AddId&#x27;,</span><br><span class="line">    amount:&#x27;10&#x27;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p> 使用Vuex的 mapMutations 辅助函数，可以通过 methods 获得</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapMutations &#125; from &#x27;vuex&#x27;</span><br><span class="line">methods: &#123;</span><br><span class="line">    ...mapMutations([&#x27;AddId&#x27;])  // this.AddId()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 注意：mutations里必须是同步函数</p>
+</li>
+<li><p>actions: 和mutation的功能大致相同<br> 和mutation不同之处在于:</p>
+<ul>
+<li>actions 提交的是 mutation，而不是直接变更状态。</li>
+<li>actions 可以包含任意异步操作。</li>
+</ul>
+<p> actions 可以调用mutations的函数</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">AddActions(context) &#123; // 上下文对象，可以理解称store本身。</span><br><span class="line">    context.commit(&#x27;AddId&#x27;, 10)</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">        context.commit(&#x27;reduce)  </span><br><span class="line">    &#125;, 3000)</span><br><span class="line">&#125;</span><br><span class="line">或者</span><br><span class="line">AddActions(&#123;commit&#125;) &#123; // 直接把commit对象传递过来，可以让方法体逻辑和代码更清晰明了。</span><br><span class="line">    commit(&#x27;reduce&#x27;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>  使用Vuex的 mapActions 辅助函数，可以通过 methods 获得</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapActions &#125; from &#x27;vuex&#x27;</span><br><span class="line">methods: &#123;</span><br><span class="line">    ...mapActions([&#x27;AddActions&#x27;])  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>modules: 模块化vuex，可以让每一个模块拥有自己的state、mutation、action、getters,使得结构非常清晰，方便管理。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/04/26/interview2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">跨域</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2022 track
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

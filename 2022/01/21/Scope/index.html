@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>作用域 | 小羊的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="编译在JavaScript中，一段源码在执行之前会有以下三步操作，称为编译  第一步：词法分析–将代码分割成一个个的词法单元第二步：语法分析–将词法单元整合整一个多维数组即抽象语法树（AST）第三步：代码生成–将抽象语法树(AST —— Abstract Syntax Tree)转换成可执行的代码  作用域 [[scope]] 指的就是我们说的作用域，其中存储了运行期的上下文集合。 [[scope">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域">
+<meta property="og:url" content="http://example.com/2022/01/21/Scope/index.html">
+<meta property="og:site_name" content="小羊的博客">
+<meta property="og:description" content="编译在JavaScript中，一段源码在执行之前会有以下三步操作，称为编译  第一步：词法分析–将代码分割成一个个的词法单元第二步：语法分析–将词法单元整合整一个多维数组即抽象语法树（AST）第三步：代码生成–将抽象语法树(AST —— Abstract Syntax Tree)转换成可执行的代码  作用域 [[scope]] 指的就是我们说的作用域，其中存储了运行期的上下文集合。 [[scope">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d662e1fa02b8469fad42e012565d200a~tplv-k3u1fbpfcp-watermark.image">
+<meta property="article:published_time" content="2022-01-21T12:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-22T02:40:21.459Z">
+<meta property="article:author" content="track">
+<meta property="article:tag" content="前端基础">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d662e1fa02b8469fad42e012565d200a~tplv-k3u1fbpfcp-watermark.image">
+  
+    <link rel="alternative" href="/atom.xml" title="小羊的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">track</a></h1>
+		</hgroup>
+
+		
+			<p class="header-subtitle"></p>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">首页</a></li>
+				        
+							<li><a href="/archives">文章目录</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+					        
+						</div>
+						<!-- music -->
+						
+							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
+							<div style="position: absolute; left: auto; width: 85%;">
+								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=https://music.163.com/song?id=1904183420&userid=1775983247&auto=1&height=66"></iframe>
+							</div>
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/leetCode/" style="font-size: 10px;">leetCode</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">前端基础</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 10px;">前端开发</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/" style="font-size: 10px;">静态页面</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 15px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io/zh-cn/">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://gitee.com/luonanyangtrack">Gitee</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/yangshentrack">github</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://es6.ruanyifeng.com/">ES6教程</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://lai-mincheng.gitee.io/my-blog/">赖师傅的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Hello, I&#39;m a developer. Nice to meet you! ———My QQ (2423051184)  WeChatID (lny0have0gyq)</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">首页</a></li>
+		        
+					<li><a href="/archives">文章目录</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Scope" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/21/Scope/" class="article-date">
+  	<time datetime="2022-01-21T12:00:00.000Z" itemprop="datePublished">2022-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      作用域
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag">前端基础</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><p>在JavaScript中，一段源码在执行之前会有以下三步操作，称为编译</p>
+<blockquote>
+<p>第一步：词法分析–将代码分割成一个个的词法单元<br>第二步：语法分析–将词法单元整合整一个多维数组即抽象语法树（AST）<br>第三步：代码生成–将抽象语法树(AST —— Abstract Syntax Tree)转换成可执行的代码</p>
+</blockquote>
+<h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><ul>
+<li>[[scope]] 指的就是我们说的作用域，其中存储了运行期的上下文集合。</li>
+<li>[[scope]] :每个JavaScript函数都是一个对象，对象中有些属性是可以访问的，但是有些不可以，[[scope]]这个属性就是其中之一，只能被JavaScript引擎存取（不能访问的属性，浏览器引擎可以识别）</li>
+</ul>
+<span id="more"></span>
+<h1 id="运行期的上下文："><a href="#运行期的上下文：" class="headerlink" title="运行期的上下文："></a>运行期的上下文：</h1><p>当函数执行时会创建一个称为执行期上下文的内部对象，一个执行期上下文定义了一个函数执行时的环境，函数每次执行时对应的执行上下文都是独一无二的，所以多次调用一个函数会导致多个调用函数会导致创建多个执行上下文，当函数执行完毕，它所产生的上下文会被销毁。</p>
+<p>如何理解上面这段话？观察下面代码，结合一下定义两次调用 test() 产生的上下文对象 AO 都是独一无二的，因为是在两个不同的环境下调用的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function test() &#123;</span><br><span class="line">console.log(tset.name);</span><br><span class="line">&#125;</span><br><span class="line">test()  --&gt; AO&#123;&#125; //调用第一次会产生一个上下文对象AO，执行后会销毁</span><br><span class="line">test()  --&gt; AO&#123;&#125; //调用第二次会产生一个上下文对象AO </span><br></pre></td></tr></table></figure>
+
+<p>因此  “函数每次执行时对应的执行上下文都是独一无二的，所以多次调用一个函数会导致多个调用函数会导致创建多个执行上下文”  这句话就很好理解了</p>
+<h1 id="作用域类型"><a href="#作用域类型" class="headerlink" title="作用域类型"></a>作用域类型</h1><p>在 javascript 中大部分情况下，只有两种作用域类型：</p>
+<ul>
+<li><p>全局作用域：全局作用域为程序的最外层作用域，一直存在。</p>
+</li>
+<li><p>函数作用域：函数作用域只有函数被定义时才会创建，包含在父级函数作用域 / 全局作用域内。</p>
+</li>
+</ul>
+<blockquote>
+<p>由于作用域的限制，每段独立的执行代码块只能访问自己作用域和外层作用域中的变量，无法访问到内层作用域的变量。</p>
+</blockquote>
+<p> 下面用一段代码更加了解全局作用域和函数作用域。<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/* 全局作用域开始 */</span><br><span class="line">var a = 1;</span><br><span class="line"></span><br><span class="line">function fun () &#123; /* fun 函数作用域开始 */</span><br><span class="line">  var a = 2;</span><br><span class="line">  console.log(a);</span><br><span class="line">&#125;                  /* fun 函数作用域结束 */</span><br><span class="line"></span><br><span class="line">fun(); // 2</span><br><span class="line"></span><br><span class="line">console.log(a); //  1</span><br><span class="line"></span><br><span class="line">/* 全局作用域结束 */</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h1 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h1><p>[[scope]]中存储的执行期的上下文对象的集合，这个集合呈链式连接，我们把这种链式连接叫做作用域链</p>
+<ul>
+<li>查找变量：从作用域链的顶端依次向下查找</li>
+</ul>
+<p>同样用代码体现一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function a() &#123;</span><br><span class="line">    function b()&#123;</span><br><span class="line">        var b=234</span><br><span class="line">        console.log(a)</span><br><span class="line">    &#125;</span><br><span class="line">    var a=123</span><br><span class="line">    b()</span><br><span class="line">&#125;</span><br><span class="line">var glob = 100</span><br><span class="line">a()</span><br><span class="line"></span><br><span class="line">// a defined a.[[scope]] --&gt;0: GO&#123;&#125; 全局</span><br><span class="line">// a doing  a.[[scope]] --&gt;0: AO&#123;&#125;  执行期</span><br><span class="line">//                         1: GO&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>最后几行代码可以结合图片理解</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d662e1fa02b8469fad42e012565d200a~tplv-k3u1fbpfcp-watermark.image" alt="scope.jpg"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/01/22/leetcode-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          两数之和
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/01/19/About-Hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Hexo在github上搭建博客网站</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2022 track
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
