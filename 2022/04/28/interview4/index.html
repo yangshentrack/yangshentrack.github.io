@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>flex,float和BFC | 小羊的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="flex弹性布局通过display： flex;设置  flex的属性：  flex-direction | 排列方向属性值：默认row(左端起始水平排列) | row-reverse(右端起始水平排列) | column(顶端起始垂直排列) | column-reverse(底部起始垂直排列) flex-wrap | 是否换行属性值：默认nowrap(不换行，超出父容器宽度压缩内容) | wra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flex,float和BFC">
+<meta property="og:url" content="http://example.com/2022/04/28/interview4/index.html">
+<meta property="og:site_name" content="小羊的博客">
+<meta property="og:description" content="flex弹性布局通过display： flex;设置  flex的属性：  flex-direction | 排列方向属性值：默认row(左端起始水平排列) | row-reverse(右端起始水平排列) | column(顶端起始垂直排列) | column-reverse(底部起始垂直排列) flex-wrap | 是否换行属性值：默认nowrap(不换行，超出父容器宽度压缩内容) | wra">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-28T09:01:30.000Z">
+<meta property="article:modified_time" content="2022-04-28T09:05:54.416Z">
+<meta property="article:author" content="track">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="小羊的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">track</a></h1>
+		</hgroup>
+
+		
+			<p class="header-subtitle"></p>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">首页</a></li>
+				        
+							<li><a href="/archives">文章目录</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+					        
+						</div>
+						<!-- music -->
+						
+							<!-- <div style="position: absolute; bottom: 120px; left: auto; width: 85%;"> -->
+							<div style="position: absolute; left: auto; width: 85%;">
+								<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=220 height=86 src="//music.163.com/outchain/player?type=2&id=https://music.163.com/song?id=1904183420&userid=1775983247&auto=1&height=66"></iframe>
+							</div>
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/leetCode/" style="font-size: 10px;">leetCode</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">前端基础</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 10px;">前端开发</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/" style="font-size: 10px;">静态页面</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 16.67px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io/zh-cn/">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://gitee.com/luonanyangtrack">Gitee</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/yangshentrack">github</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://es6.ruanyifeng.com/">ES6教程</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">Hello, I&#39;m a developer. Nice to meet you! ———My QQ (2423051184)  WeChatID (lny0have0gyq)</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">首页</a></li>
+		        
+					<li><a href="/archives">文章目录</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yangshentrack" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-interview4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/04/28/interview4/" class="article-date">
+  	<time datetime="2022-04-28T09:01:30.000Z" itemprop="datePublished">2022-04-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      flex,float和BFC
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="flex弹性布局"><a href="#flex弹性布局" class="headerlink" title="flex弹性布局"></a>flex弹性布局</h1><pre><code>通过display： flex;设置
+</code></pre>
+<p>flex的属性：</p>
+<ol>
+<li>flex-direction | 排列方向<br>属性值：默认row(左端起始水平排列) | row-reverse(右端起始水平排列) | column(顶端起始垂直排列) | column-reverse(底部起始垂直排列)</li>
+<li>flex-wrap | 是否换行<br>属性值：默认nowrap(不换行，超出父容器宽度压缩内容) | wrap(超出父容器宽度允许换行) | wrap-reverse(换行方式与wrap相反)</li>
+<li>justify-content | X轴的对齐方式<br>属性值：</li>
+</ol>
+<ul>
+<li>flex-start: 对齐主轴起点且没有间隙</li>
+<li>center：在主轴上居中对齐，位于容器中心且没有间隙</li>
+<li>flex-end: 对齐主轴终点且没有间隙</li>
+<li>space-between: 间距相等，第一个和最后一个容器靠在主轴起点和终点</li>
+<li>space-around: 第一个容器离主轴起点以及最后一个容器离主轴起点是中间相邻容器间距的一半</li>
+<li>space-evently: 容器间都有间距都相等<span id="more"></span></li>
+</ul>
+<ol start="4">
+<li>align-items | Y轴的对齐方式<br>属性值：</li>
+</ol>
+<ul>
+<li>stretch: 高度未定时子容器自动填满整个flex容器的高度</li>
+<li>flex-start: 对齐起点</li>
+<li>center: Y轴方向上居中对齐</li>
+<li>flex-end: 对齐终点</li>
+<li>baseline: 对齐于基线，未设置时于flex-start 一致</li>
+</ul>
+<ol start="5">
+<li>align-content | 多行排列</li>
+</ol>
+<ul>
+<li>stretch: 默认,未设置容器高度时拉伸直到填满Y轴</li>
+<li>flex-start: Y轴起点对齐</li>
+<li>center: Y轴居中对齐</li>
+<li>flex-end：Y轴终点对齐</li>
+<li>space-between: 行间距相等，首行和末尾行分别紧靠Y轴起点和终点</li>
+<li>space-around: 行间距相等，首行与起点间距和末尾行与起点间距为中间相邻行的一半</li>
+<li>space-evenly: 行间距都相等</li>
+</ul>
+<ol start="6">
+<li>order | 设置在主轴上的排列顺序</li>
+</ol>
+<ul>
+<li>按数值从小到大排列，默认为0</li>
+</ul>
+<ol start="7">
+<li>flex-shrink | 设置收缩比率，按比例分flex容器的大小</li>
+<li>flex-grow | 设置扩张比率，将多的flex容器位置按比例将其分完</li>
+<li>flex-basis | 代替主轴方向上宽和高</li>
+<li>align-self | 设置flex容器内部子容器在Y轴上的对齐方式,在子容器设置该属性可以覆盖align-items属性</li>
+</ol>
+<ul>
+<li>auto：默认，继承父容器的align-item的属性，若未设置则为stretch</li>
+<li>stretch .  flex-start . center . flex-end . baseline与align-items一致</li>
+</ul>
+<h1 id="float浮动"><a href="#float浮动" class="headerlink" title="float浮动"></a>float浮动</h1><p>通过浮动可以使一个元素向其父元素的左侧或右侧移动<br>使用float属性来设置元素的浮动<br>可选值：<br>    - none 默认，元素不浮动<br>    - left 元素向左浮动<br>    - right 元素向右浮动<br>注意：<br>    元素设置浮动以后，水平布局的等式不需要强制成立<br>    元素设置浮动以后,会完全脱离文档流,不再占用文档流<br>浮动的特点：</p>
+<ol>
+<li>浮动元素会完全脱离文档流，不再占据文档流的位置</li>
+<li>设置浮动以后元素会父元素的左侧或右侧移动</li>
+<li>浮动元素默认不会从父元素中移出</li>
+<li>浮动元素向左或向右，不会超过它前边的其他浮动元素</li>
+<li>如果浮动元素前面是一个没有浮动的块元素，则浮动元素是占据不了它的位置的<br>其他特点；</li>
+<li>浮动元素不会盖住文字，文字会自动环绕在浮动元素的周围（一开始就是为了文字环绕图片这个功能）</li>
+<li>设置浮动会脱离文档流，元素的特点也会发生变化，不需要区分块元素和行内元素<ul>
+<li>块元素：<ul>
+<li>块元素不再独占页面一行</li>
+<li>块元素的宽高默认被内容撑开</li>
+</ul>
+</li>
+<li>行内元素：<ul>
+<li>会变成块元素，可以设置宽高<br>总结：<br>浮动目前的主要作用是让页面中的元素可以水平排列，通过浮动制作水平方向的布局</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="高度塌陷问题"><a href="#高度塌陷问题" class="headerlink" title="高度塌陷问题"></a>高度塌陷问题</h1><p>概念：在浮动布局中，父元素高度默认被子元素撑开，子元素浮动时会脱离文档流，就无法撑起父元素<br>的高度，导致父元素高度塌陷,影响其他元素从而影响页面布局</p>
+<ul>
+<li>BFC(Block Formatting Context) 块级格式化环境</li>
+</ul>
+<ol>
+<li>CSS的一个隐含的属性，可以为一个元素开启BFC，开启后该元素会变成一个独立的布局区域</li>
+<li>开启BFC特点：<ul>
+<li>不会被浮动元素覆盖</li>
+<li>子元素和父元素外边距不会重叠</li>
+<li>开启后可以包含浮动的元素</li>
+</ul>
+</li>
+<li>如何开启BFC<ul>
+<li>设置父元素的浮动(不推荐)</li>
+<li>父元素设置为行内块级元素(不推荐)</li>
+<li>父元素的overflow设置一个非visible的值(常用)</li>
+</ul>
+</li>
+<li>通过clear元素清除浮动对元素的影响<br> 可选值：<ul>
+<li>left 清除左侧浮动元素对当前元素的影响</li>
+<li>right 清除右侧浮动元素对当前元素的影响</li>
+<li>both  清除两侧中最大影响的那边<br>原理：<br>  设置clear以后浏览器会自动为元素添加一个上外边距，使其位置不受影响</li>
+</ul>
+</li>
+<li>after伪元素解决<br> 原理跟clear相差不大<br> ::after {<pre><code> content；&#39;&#39;;
+ display: block;
+ clear； both;
+</code></pre>
+ }</li>
+<li>clearfix</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/29/interview5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          隐藏元素的三种方式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/27/interview3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vuex</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2022 track
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
