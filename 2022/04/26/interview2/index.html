@@ -9,15 +9,15 @@
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="同源策略域名，端口，协议 为什么会跨域浏览器同源策略的限制，前后端域名不一致 如何解决 josnp 原理：HTML中的script src属性获取其他源的数据 缺点：只支持get请求  123456&lt;script&gt; function getData(res) &amp;#123;    console.log(res)&amp;#125;&lt;&#x2F;script&gt;  &lt;script src&#x3D;">
+  <meta name="description" content="同源策略域名，端口，协议 为什么会跨域浏览器同源策略的限制，前后端域名不一致 特别说明 如果是端口和协议造成的跨域，前端是没有办法解决的 跨域仅仅是根据url的首部来识别，不会根据这个首部对应的ip地址来判断 跨域不是请求没有发出去，请求是可以发出去的，服务器也会响应，但是响应结果被浏览器拦截了  如何解决 josnp 原理：HTML中的script src属性获取其他源的数据 缺点：只支持get">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨域">
 <meta property="og:url" content="http://example.com/2022/04/26/interview2/index.html">
 <meta property="og:site_name" content="小羊的博客">
-<meta property="og:description" content="同源策略域名，端口，协议 为什么会跨域浏览器同源策略的限制，前后端域名不一致 如何解决 josnp 原理：HTML中的script src属性获取其他源的数据 缺点：只支持get请求  123456&lt;script&gt; function getData(res) &amp;#123;    console.log(res)&amp;#125;&lt;&#x2F;script&gt;  &lt;script src&#x3D;">
+<meta property="og:description" content="同源策略域名，端口，协议 为什么会跨域浏览器同源策略的限制，前后端域名不一致 特别说明 如果是端口和协议造成的跨域，前端是没有办法解决的 跨域仅仅是根据url的首部来识别，不会根据这个首部对应的ip地址来判断 跨域不是请求没有发出去，请求是可以发出去的，服务器也会响应，但是响应结果被浏览器拦截了  如何解决 josnp 原理：HTML中的script src属性获取其他源的数据 缺点：只支持get">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-26T06:42:30.000Z">
-<meta property="article:modified_time" content="2022-04-27T09:07:45.603Z">
+<meta property="article:modified_time" content="2022-05-01T06:33:41.495Z">
 <meta property="article:author" content="track">
 <meta property="article:tag" content="面试题">
 <meta name="twitter:card" content="summary">
@@ -100,7 +100,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/leetCode/" style="font-size: 10px;">leetCode</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">前端基础</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 10px;">前端开发</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/" style="font-size: 10px;">静态页面</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 16.67px;">面试题</a>
+						<a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/Vue/" style="font-size: 15px;">Vue</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/leetCode/" style="font-size: 10px;">leetCode</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">前端基础</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 10px;">前端开发</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/" style="font-size: 10px;">静态页面</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -209,6 +209,11 @@
       
         <h1 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h1><p>域名，端口，协议</p>
 <h1 id="为什么会跨域"><a href="#为什么会跨域" class="headerlink" title="为什么会跨域"></a>为什么会跨域</h1><p>浏览器同源策略的限制，前后端域名不一致</p>
+<h1 id="特别说明"><a href="#特别说明" class="headerlink" title="特别说明"></a>特别说明</h1><ol>
+<li>如果是端口和协议造成的跨域，前端是没有办法解决的</li>
+<li>跨域仅仅是根据url的首部来识别，不会根据这个首部对应的ip地址来判断</li>
+<li>跨域不是请求没有发出去，请求是可以发出去的，服务器也会响应，但是响应结果被浏览器拦截了</li>
+</ol>
 <h1 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h1><ol>
 <li><p>josnp<br> 原理：HTML中的script src属性获取其他源的数据<br> 缺点：只支持get请求</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; </span><br><span class="line">function getData(res) &#123;</span><br><span class="line">    console.log(res)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">  &lt;script src= &quot;&quot;接口请求&quot;?callback=getData&quot;&gt; &lt;/script&gt;</span><br></pre></td></tr></table></figure>
